@@ -11,7 +11,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t ravikodekal:assignment:java1 .'
+                    sh 'docker build -t ravikodekal/assignment:java1 .'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps{
                 script{
                    sh 'docker login -u ravikodekal -p Ravi@3128'
-                    sh 'docker push ravikodekal:assignment:java1'
+                    sh 'docker push ravikodekal/assignment:java1'
                 }
             }
         }
