@@ -11,24 +11,24 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                     sh 'docker build -t ravikodekal:java-assign .'
+                    sh 'docker build -t ravikodekal:assignment:java1 .'
                 }
             }
         }
-        stage('Push image to dockerhub'){
+        stage('Push image to Hub'){
             steps{
                 script{
                    sh 'docker login -u ravikodekal -p Ravi@3128'
-                    sh 'docker push ravikodekal:java-assign'
+                    sh 'docker push ravikodekal:assignment:java1'
                 }
             }
         }
         stage('Deploy to k8s'){
             steps{
                 script{
-                    kubernetesDeploy(configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetes')
+                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfig')
                 }
             }
-        }
-    }
+        }
+    }
 }
